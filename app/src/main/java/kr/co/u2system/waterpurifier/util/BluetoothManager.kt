@@ -25,6 +25,8 @@ object BluetoothManager {
 
 	fun connect(data: Intent?) = spp.connect(data)
 
+	fun write(data: String) = spp.send(data, false)
+
 	private fun initBluetoothListener() {
 		spp.setOnDataReceivedListener { _, message ->
 			lastUpdateTime.onNext(System.currentTimeMillis())

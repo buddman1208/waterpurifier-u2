@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="9dp"
-            android:text="40000ml"
+            android:text="0 ml"
             app:layout_constraintStart_toEndOf="@id/lbl_accumulated_usage"
             app:layout_constraintTop_toBottomOf="@id/divider_top" />
 
@@ -134,7 +134,7 @@
                 style="@style/Pretendard.Medium.24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="60"
+                android:text="0"
                 android:textColor="@color/white" />
 
             <TextView
@@ -160,7 +160,7 @@
                 style="@style/Pretendard.Medium.24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="40"
+                android:text="0"
                 android:textColor="@color/white" />
 
             <TextView
@@ -186,7 +186,7 @@
                 style="@style/Pretendard.Medium.24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="75"
+                android:text="0"
                 android:textColor="@color/white" />
 
             <TextView
@@ -248,7 +248,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/last_update_time_format"
             android:textColor="#80FFFFFF"
             app:layout_constraintBottom_toBottomOf="@id/iv_refresh"
             app:layout_constraintEnd_toEndOf="@id/tv_connected" />
