@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Pretendard.Medium.18"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:textColor="#FFFFFF"
+    tools:text="text"
+    android:drawablePadding="8dp"
+    android:gravity="center_vertical"
+    app:drawableStartCompat="@drawable/ic_purifier_list_start" />
+

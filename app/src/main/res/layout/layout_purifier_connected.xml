@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="24dp">
+
+        <!-- Top -->
+        <TextView
+            android:id="@+id/lbl_filter_usage"
+            style="@style/Pretendard.Medium.22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="필터 사용량"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider_top"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/lbl_filter_usage" />
+
+        <TextView
+            android:id="@+id/lbl_accumulated_usage"
+            style="@style/Pretendard.Medium.10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:text="누적 정수량"
+            app:layout_constraintBottom_toBottomOf="@id/tv_accumulated_usage"
+            app:layout_constraintStart_toStartOf="@id/divider_top" />
+
+        <TextView
+            android:id="@+id/tv_accumulated_usage"
+            style="@style/Pretendard.Medium.18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="9dp"
+            android:text="40000ml"
+            app:layout_constraintStart_toEndOf="@id/lbl_accumulated_usage"
+            app:layout_constraintTop_toBottomOf="@id/divider_top" />
+
+        <!-- Purifier Image -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_purifier_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+            android:src="@drawable/img_purifier"
+            app:layout_constraintEnd_toStartOf="@id/iv_purifier_2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_accumulated_usage" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_purifier_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:src="@drawable/img_purifier"
+            app:layout_constraintEnd_toStartOf="@id/iv_purifier_3"
+            app:layout_constraintStart_toEndOf="@id/iv_purifier_1"
+            app:layout_constraintTop_toTopOf="@id/iv_purifier_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_purifier_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_purifier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_purifier_2"
+            app:layout_constraintTop_toTopOf="@id/iv_purifier_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_purifier_clip_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clip_purifier"
+            android:tint="@color/blue1"
+            app:layout_constraintBottom_toBottomOf="@id/iv_purifier_1"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_1"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_1"
+            app:layout_constraintTop_toTopOf="@id/iv_purifier_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_purifier_clip_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clip_purifier"
+            android:tint="@color/blue2"
+            app:layout_constraintBottom_toBottomOf="@id/iv_purifier_2"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_2"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_2"
+            app:layout_constraintTop_toTopOf="@id/iv_purifier_2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_purifier_clip_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clip_purifier"
+            android:tint="@color/blue3"
+            app:layout_constraintBottom_toBottomOf="@id/iv_purifier_3"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_3"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_3"
+            app:layout_constraintTop_toTopOf="@id/iv_purifier_3" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_text_purifier_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_1"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_1"
+            app:layout_constraintTop_toBottomOf="@id/iv_purifier_1">
+
+            <TextView
+                android:id="@+id/tv_percent_1"
+                style="@style/Pretendard.Medium.24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="60"
+                android:textColor="@color/white" />
+
+            <TextView
+                style="@style/Pretendard.Medium.18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_percent"
+                android:textColor="#99FFFFFF" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_text_purifier_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_2"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_2"
+            app:layout_constraintTop_toBottomOf="@id/iv_purifier_2">
+
+            <TextView
+                android:id="@+id/tv_percent_2"
+                style="@style/Pretendard.Medium.24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40"
+                android:textColor="@color/white" />
+
+            <TextView
+                style="@style/Pretendard.Medium.18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_percent"
+                android:textColor="#99FFFFFF" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_text_purifier_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_3"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_3"
+            app:layout_constraintTop_toBottomOf="@id/iv_purifier_3">
+
+            <TextView
+                android:id="@+id/tv_percent_3"
+                style="@style/Pretendard.Medium.24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="75"
+                android:textColor="@color/white" />
+
+            <TextView
+                style="@style/Pretendard.Medium.18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_percent"
+                android:textColor="#99FFFFFF" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_filter_replace_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/btn_filter_replace_1"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_1"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_1"
+            app:layout_constraintTop_toBottomOf="@id/container_text_purifier_1" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_filter_replace_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/btn_filter_replace_2"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_2"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_2"
+            app:layout_constraintTop_toBottomOf="@id/container_text_purifier_2" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_filter_replace_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/btn_filter_replace_3"
+            app:layout_constraintEnd_toEndOf="@id/iv_purifier_3"
+            app:layout_constraintStart_toStartOf="@id/iv_purifier_3"
+            app:layout_constraintTop_toBottomOf="@id/container_text_purifier_3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end">
+
+        <TextView
+            android:id="@+id/tv_connected"
+            style="@style/Pretendard.Medium.16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="@string/purifier_is_connected"
+            app:layout_constraintEnd_toStartOf="@id/iv_refresh"
+            app:layout_constraintTop_toTopOf="@id/iv_refresh" />
+
+        <TextView
+            android:id="@+id/tv_last_connected_time"
+            style="@style/Pretendard.Medium.10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/last_update_time_format"
+            android:textColor="#80FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@id/iv_refresh"
+            app:layout_constraintEnd_toEndOf="@id/tv_connected" />
+
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

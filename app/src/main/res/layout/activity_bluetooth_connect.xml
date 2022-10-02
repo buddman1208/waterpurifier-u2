@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        style="@style/Pretendard.Medium.20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_connected_purifier"
+        app:layout_constraintBottom_toBottomOf="@id/iv_purifier"
+        app:layout_constraintEnd_toEndOf="@id/iv_purifier"
+        app:layout_constraintStart_toStartOf="@id/iv_purifier"
+        app:layout_constraintTop_toTopOf="@id/iv_purifier" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_purifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pic_purifier"
+        app:layout_constraintBottom_toTopOf="@id/btn_add_purifier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_purifier"
+        style="@style/Pretendard.Medium.20"
+        android:layout_width="250dp"
+        android:layout_height="66dp"
+        android:text="@string/connect_new_purifier"
+        app:backgroundTint="@color/blue2"
+        app:cornerRadius="33dp"
+        app:icon="@drawable/ic_add"
+        app:iconGravity="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_purifier" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
