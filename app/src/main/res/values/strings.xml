@@ -3,6 +3,6 @@
     <string name="no_connected_purifier">연결된 정수기가 없습니다.</string>
     <string name="connect_new_purifier">정수기 추가하기</string>
     <string name="purifier_is_connected">정수기가 연결 되어있습니다.</string>
-    <string name="last_update_time_format">최종업데이트 YYYY.MM.DD HH:MM:ss</string>
+    <string name="last_update_time_format" formatted="false">최종업데이트 %s</string>
     <string name="text_percent">%</string>
 </resources>

@@ -10,6 +10,7 @@ object BluetoothManager {
 	private val spp: BluetoothSPP by lazy { BluetoothSPP(App.appContext) }
 	val bluetoothState: PublishSubject<Int> = PublishSubject.create()
 	var lastUpdateTime: PublishSubject<Long> = PublishSubject.create()
+	var lastCount: PublishSubject<Long> = PublishSubject.create()
 
 	fun initManager() {
 		if (!spp.isBluetoothEnabled) {
@@ -27,7 +28,9 @@ object BluetoothManager {
 	private fun initBluetoothListener() {
 		spp.setOnDataReceivedListener { _, message ->
 			lastUpdateTime.onNext(System.currentTimeMillis())
-			println("message $message")
+			val cnt = message.replace(" ", "").toLong() / 6
+			lastCount.onNext(cnt)
+			println("lastCount $cnt message $message ")
 		}
 
 		spp.setBluetoothStateListener { state ->
