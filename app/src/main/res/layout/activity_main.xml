@@ -8,9 +8,6 @@
     tools:context=".MainActivity">
 
     <include
-        layout="@layout/activity_bluetooth_connect" />
-
-    <include
         layout="@layout/layout_purifier_connected" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,19 +1,14 @@
 package kr.co.u2system.waterpurifier
 
-import android.annotation.SuppressLint
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
-import kr.co.u2system.waterpurifier.util.BluetoothManager
-import kr.co.u2system.waterpurifier.util.Preferences
-import kr.co.u2system.waterpurifier.util.addTo
-import kr.co.u2system.waterpurifier.util.toFormattedTime
-import kotlin.math.absoluteValue
+import kr.co.u2system.waterpurifier.dialog.PurifierResetDialog
+import kr.co.u2system.waterpurifier.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +27,11 @@ class MainActivity : AppCompatActivity() {
 	private val firstPurifierProgressText: TextView by lazy { findViewById(R.id.tv_percent_1) }
 	private val secondPurifierProgressText: TextView by lazy { findViewById(R.id.tv_percent_2) }
 	private val thirdPurifierProgressText: TextView by lazy { findViewById(R.id.tv_percent_3) }
+
+	private val filterChangeNoticeText: TextView by lazy { findViewById(R.id.tv_filter_change_notice) }
+	private val firstFilterChangeSticker: View by lazy { findViewById(R.id.iv_filter_replace_sticker_1) }
+	private val secondFilterChangeSticker: View by lazy { findViewById(R.id.iv_filter_replace_sticker_2) }
+	private val thirdFilterChangeSticker: View by lazy { findViewById(R.id.iv_filter_replace_sticker_3) }
 
 	private var recentReceivedCount: Long = 0L
 
@@ -59,15 +59,21 @@ class MainActivity : AppCompatActivity() {
 
 		BluetoothManager.lastCount
 			.subscribe { count ->
-				Log.e("asdf", "count $count cache ${Preferences.firstPurifierCache} ml a ${calculateActualCount(1, count) / first_max.toFloat()* 10000}")
-				Log.e("asdf", "count $count cache ${Preferences.secondPurifierCache} ml b ${calculateActualCount(2, count) /second_max.toFloat()* 10000}")
-				Log.e("asdf", "count $count cache ${Preferences.thirdPurifierCache} ml c ${calculateActualCount(3, count) / third_max.toFloat()* 10000}")
 				recentReceivedCount = count
 
 				updateTotalCount(count)
-				displayLevel(1, calculateActualCount(1, count) / first_max.toFloat())
-				displayLevel(2, calculateActualCount(2, count) / second_max.toFloat())
-				displayLevel(3, calculateActualCount(3, count) / third_max.toFloat())
+
+				val firstPurifierPercent = calculateActualCount(1, count) / first_max.toFloat()
+				val secondPurifierPercent = calculateActualCount(2, count) / second_max.toFloat()
+				val thirdPurifierPercent = calculateActualCount(3, count) / third_max.toFloat()
+				displayLevel(1, firstPurifierPercent)
+				displayLevel(2, secondPurifierPercent)
+				displayLevel(3, thirdPurifierPercent)
+				showNoticeFilterChangeIfNeeded(
+					firstPurifierPercent,
+					secondPurifierPercent,
+					thirdPurifierPercent
+				)
 			}
 			.addTo(compositeDisposable)
 	}
@@ -79,13 +85,18 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private fun sendClearCommand(purifierIdx: Int) {
-		(1..3).forEach { Preferences.writeToPurifier(it, recentReceivedCount, (it == purifierIdx)) }
-		Preferences.totalPurifierCache = Preferences.totalPurifierCache + recentReceivedCount
-		BluetoothManager.write("clear")
+		PurifierResetDialog.newInstance(object: PurifierResetDialog.ResetCallback{
+			override fun onReset() {
+				(1..3).forEach { Preferences.writeToPurifier(it, recentReceivedCount, (it == purifierIdx)) }
+				Preferences.totalPurifierCache = Preferences.totalPurifierCache + recentReceivedCount
+				BluetoothManager.write("clear")
+			}
+		}).show(supportFragmentManager, "tag")
 	}
 
 	private fun updateTotalCount(count: Long) {
-		findViewById<TextView>(R.id.tv_accumulated_usage).text = "${Preferences.totalPurifierCache + count} ml"
+		findViewById<TextView>(R.id.tv_accumulated_usage).text =
+			"${Preferences.totalPurifierCache + count} ml"
 	}
 
 	private fun displayLevel(purifierIdx: Int, percentValue: Float) {
@@ -103,8 +114,48 @@ class MainActivity : AppCompatActivity() {
 		}?.text = (percentValue * 100).toInt().toString()
 	}
 
+	private fun showNoticeFilterChangeIfNeeded(
+		firstPurifierPercent: Float,
+		secondPurifierPercent: Float,
+		thirdPurifierPercent: Float
+	) {
+		fun showFilterNotice(notifyTargetIndex: Int) {
+			val highLightText =
+				resources.getStringArray(R.array.filter_index_text)[notifyTargetIndex - 1]
+			filterChangeNoticeText.text = String.format(
+				getString(R.string.filter_change_noti_format),
+				highLightText
+			)
+			filterChangeNoticeText.highLightTargetText(
+				highLightText,
+				HighlightColor.indexOf(notifyTargetIndex).colorCode
+			)
+			filterChangeNoticeText.visibility = View.VISIBLE
+
+			firstFilterChangeSticker.visibility =
+				if (notifyTargetIndex == 1) View.VISIBLE else View.GONE
+			secondFilterChangeSticker.visibility =
+				if (notifyTargetIndex == 2) View.VISIBLE else View.GONE
+			thirdFilterChangeSticker.visibility =
+				if (notifyTargetIndex == 3) View.VISIBLE else View.GONE
+		}
+
+		fun hideFilterNotice() {
+			filterChangeNoticeText.visibility = View.GONE
+			firstFilterChangeSticker.visibility = View.GONE
+			secondFilterChangeSticker.visibility = View.GONE
+			thirdFilterChangeSticker.visibility = View.GONE
+		}
+		when {
+			thirdPurifierPercent >= 0.9 -> showFilterNotice(3)
+			secondPurifierPercent >= 0.9 -> showFilterNotice(2)
+			firstPurifierPercent >= 0.9 -> showFilterNotice(1)
+			else -> hideFilterNotice()
+		}
+	}
+
 	private fun calculateActualCount(purifierIdx: Int, receivedCount: Long): Long {
-		return when(purifierIdx) {
+		return when (purifierIdx) {
 			1 -> Preferences.firstPurifierCache
 			2 -> Preferences.secondPurifierCache
 			3 -> Preferences.thirdPurifierCache
@@ -119,9 +170,26 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
-		const val first_max = 1000 * 90
-		const val second_max = 1000 * 30
-		const val third_max = 1000 * 10
+		const val first_max = 1000 * 9
+		const val second_max = 1000 * 3
+		const val third_max = 1000 * 1
+	}
+
+	enum class HighlightColor(
+		val colorCode: String
+	) {
+		FIRST("#6486ff"),
+		SECOND("#29a4ff"),
+		THIRD("#41b9df");
+
+		companion object {
+			fun indexOf(index: Int): HighlightColor = when (index) {
+				1 -> FIRST
+				2 -> SECOND
+				3 -> THIRD
+				else -> THIRD
+			}
+		}
 	}
 }
 

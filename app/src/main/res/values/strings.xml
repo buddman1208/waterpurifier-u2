@@ -5,4 +5,5 @@
     <string name="purifier_is_connected">정수기가 연결 되어있습니다.</string>
     <string name="last_update_time_format" formatted="false">최종업데이트 %s</string>
     <string name="text_percent">%</string>
+    <string name="filter_change_noti_format" formatted="false">%s 필터를 교체해주세요.\n필터의 사용량이 100%%가 되면\n출수량이 줄어듭니다.</string>
 </resources>

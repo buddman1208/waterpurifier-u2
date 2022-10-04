@@ -11,8 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:padding="24dp">
 
         <!-- Top -->
@@ -206,6 +205,18 @@
             app:layout_constraintEnd_toEndOf="@id/iv_purifier_1"
             app:layout_constraintStart_toStartOf="@id/iv_purifier_1"
             app:layout_constraintTop_toBottomOf="@id/container_text_purifier_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_filter_replace_sticker_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="-16dp"
+            android:src="@drawable/ic_warning"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/btn_filter_replace_1"
+            app:layout_constraintTop_toTopOf="@id/btn_filter_replace_1" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_filter_replace_2"
             android:layout_width="wrap_content"
@@ -215,6 +226,19 @@
             app:layout_constraintEnd_toEndOf="@id/iv_purifier_2"
             app:layout_constraintStart_toStartOf="@id/iv_purifier_2"
             app:layout_constraintTop_toBottomOf="@id/container_text_purifier_2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_filter_replace_sticker_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+
+            android:layout_marginEnd="-16dp"
+            android:src="@drawable/ic_warning"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/btn_filter_replace_2"
+            app:layout_constraintTop_toTopOf="@id/btn_filter_replace_2" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_filter_replace_3"
             android:layout_width="wrap_content"
@@ -224,6 +248,43 @@
             app:layout_constraintEnd_toEndOf="@id/iv_purifier_3"
             app:layout_constraintStart_toStartOf="@id/iv_purifier_3"
             app:layout_constraintTop_toBottomOf="@id/container_text_purifier_3" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_filter_replace_sticker_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="-16dp"
+            android:src="@drawable/ic_warning"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/btn_filter_replace_3"
+            app:layout_constraintTop_toTopOf="@id/btn_filter_replace_3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_filter_replace_1">
+
+        <TextView
+            android:id="@+id/tv_filter_change_notice"
+            style="@style/Pretendard.Medium.20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_dialog_20dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:padding="24dp"
+            android:text="@string/filter_change_noti_format"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

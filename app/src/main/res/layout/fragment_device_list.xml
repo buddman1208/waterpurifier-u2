@@ -45,16 +45,17 @@
         android:layout_width="match_parent"
         android:layout_height="400dp" />
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_cancel"
         style="@style/Pretendard.Medium.18"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:background="@drawable/bg_btn_cancel"
-        android:foreground="?attr/selectableItemBackground"
+        app:cornerRadius="30dp"
         android:gravity="center"
+        android:layout_marginEnd="16dp"
         android:minHeight="48dp"
         android:text="취소"
+        app:backgroundTint="#60636D"
         android:textColor="#FFFFFF" />
 </androidx.appcompat.widget.LinearLayoutCompat>

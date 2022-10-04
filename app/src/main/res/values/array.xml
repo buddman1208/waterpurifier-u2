@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="filter_index_text">
+        <item>● 1번 </item>
+        <item>● 2번 </item>
+        <item>● 3번 </item>
+    </string-array>
+</resources>
