@@ -11,18 +11,21 @@ import app.akexorcist.bluetotohspp.library.BluetoothState
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import io.reactivex.disposables.CompositeDisposable
+import kr.co.u2system.waterpurifier.dialog.ConnectProgressDialogFragment
 import kr.co.u2system.waterpurifier.dialog.DeviceListDialogFragment
 import kr.co.u2system.waterpurifier.util.BluetoothManager
 
 
 class BluetoothConnectActivity : AppCompatActivity() {
 
-	val compositeDisposable: CompositeDisposable = CompositeDisposable()
-	val bluetoothDeviceCallback = object: DeviceListDialogFragment.DeviceSelectCallback{
+	private val compositeDisposable: CompositeDisposable = CompositeDisposable()
+	private val bluetoothDeviceCallback = object: DeviceListDialogFragment.DeviceSelectCallback{
 		override fun onDeviceSelect(intent: Intent) {
 			BluetoothManager.connect(intent)
 		}
 	}
+
+	private lateinit var connectingDialog: ConnectProgressDialogFragment
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -71,7 +74,9 @@ class BluetoothConnectActivity : AppCompatActivity() {
 				when (it) {
 					BluetoothState.STATE_CONNECTED -> startMainActivity()
 					BluetoothState.STATE_CONNECTING -> {
-						Toast.makeText(this, "connecting", Toast.LENGTH_SHORT).show()
+						connectingDialog = ConnectProgressDialogFragment().apply {
+							show(supportFragmentManager, "connectingDialog")
+						}
 					}
 				}
 			}
