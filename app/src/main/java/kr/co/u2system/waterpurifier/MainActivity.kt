@@ -13,7 +13,7 @@ import kr.co.u2system.waterpurifier.util.*
 
 class MainActivity : AppCompatActivity() {
 
-	val compositeDisposable = CompositeDisposable()
+	private val compositeDisposable = CompositeDisposable()
 
 	private val firstPurifierProgressImage: ClipDrawable by lazy {
 		findViewById<ImageView>(R.id.iv_purifier_clip_1).drawable as ClipDrawable
