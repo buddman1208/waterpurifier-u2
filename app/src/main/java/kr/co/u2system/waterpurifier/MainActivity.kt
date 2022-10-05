@@ -170,9 +170,9 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
-		const val first_max = 1000 * 9
-		const val second_max = 1000 * 3
-		const val third_max = 1000 * 1
+		const val first_max = 1000 * 90
+		const val second_max = 1000 * 30
+		const val third_max = 1000 * 10
 	}
 
 	enum class HighlightColor(
